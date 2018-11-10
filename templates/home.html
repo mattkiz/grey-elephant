@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        body {
+            background-image: url("static/greyelephant2.jpg");
+        }
+    </style>
     <meta charset="UTF-8">
     <title>Title</title>
     <meta charset="UTF-8">
 </head>
-<body>
-{% include "base_template.html" %}
 
+{% include "base_template.html" %}
+{% extends "bootstrap/base.html" %}
+{% block content %}
+    <p class = "page-header text-center">Our machines use AI to do your gift shopping for you!</p>
+    <div style="text-align:center;">
+    <button class = "active btn-lg btn-success text-center">
+        Get Started
+    </button>
+    </div>
+{% endblock %}
 </body>
 </html>
