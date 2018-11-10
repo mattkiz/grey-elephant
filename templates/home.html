@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        div.image1 {
+            background-image: url("static/greyelephant2.jpg");
+            background-color:rgba(212,212,212,.2);
+        }
+        div.a {
+            margin: auto;
+            font-weight: bold;
+            width: 60%;
+            opacity:1.0;
+            padding: 155px;
+            font-size: 125%
+        }
+    </style>
     <meta charset="UTF-8">
     <title>Title</title>
     <meta charset="UTF-8">
 </head>
-<body>
-{% include "base_template.html" %}
 
+{% include "base_template.html" %}
+{% extends "bootstrap/base.html" %}
+{% block content %}
+    <div class="image1" style="height:600px" >
+    <div class="a">
+    <p> <strong class = "text-center"> Our machines use AI to do your gift shopping for you!</strong></p>
+    </div>
+    <div style="text-align:center;">
+    <button class = "active btn-lg btn-success text-center">Get Started</button>
+    </div>
+    </div>
+{% endblock %}
 </body>
 </html>
