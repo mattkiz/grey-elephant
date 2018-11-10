@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Grey Elephant</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+{% extends "bootstrap/base.html" %}
+{% block navbar %}
+<nav class="navbar navbar-inverse bg-dark">
+    <ul class="nav navbar-nav">
+        <li class="active">
+            <a class=navbar-brand" href="{{url_for('home')}}">Grey Elephant</a>
+        </li>
+        <li><a href="{{url_for('recipient_info')}}">Get Started</a></li>
+        <li><a href="#">About Grey Elephant</a></li>
+    </ul>
+</nav>
+{% endblock %}
+</body>
+</html>
