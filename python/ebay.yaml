@@ -18,7 +18,7 @@ api.ebay.com:
 
 # Finding API - https://www.x.com/developers/ebay/products/finding-api
 svcs.ebay.com:
-    appid: 7d491d7f-c3ba-4437-b868-96518258d9ce	
+    appid: NathanNi-GreyElep-PRD-6c22b8256-64e0a145
     version: 1.0.0
 
 # Shopping API - https://www.x.com/developers/ebay/products/shopping-api
