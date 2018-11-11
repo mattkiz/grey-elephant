@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
-from grey_elephant import RecipientForm
+from grey_elephant import RecipientForm, util
 from ig_scrape import scrape
+
 
 app = Flask(__name__)
 app.template_folder = "./templates"
@@ -11,9 +12,9 @@ Bootstrap(app)
 def home():
     return render_template("home.html")
 
-@app.route("/login")
+@app.route("/login", methods=["POST"])
 def login():
-
+    print(request.json)
     return render_template("home.html")
 
 @app.route("/recipientinfo/", methods=["GET"])
@@ -26,9 +27,7 @@ def recipient_info_post():
     form = RecipientForm(request.form)
 
     if form.validate():
-        # data = scrape(form.instagram.data)
-        sendemail()
-        # data = scrape(form.instagram.data)
+        util.sendemail(form.email.data)
     else:
         return render_template("recipient_info_form.html", form=form, error=True)
     return str(form.data)

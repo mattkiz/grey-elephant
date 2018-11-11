@@ -1,13 +1,13 @@
 import smtplib
 
 
-def sendemail():
+def sendemail(send_email):
     subject = 'Merry Gift Giving!'
     message = 'Click the link to receive a gift from your friend! Link: http://127.0.0.1:5000/login'
     smtpserver = 'smtp.gmail.com:587'
     password = 'HackerFooBar123'
     login = 'greyelephantstaff@gmail.com'
-    to_addr_list = [form.email.data]
+    to_addr_list = [send_email]
     from_addr = 'greyelephantstaff@gmail.com'
     print("function got called")
 

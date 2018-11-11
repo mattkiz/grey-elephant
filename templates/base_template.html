@@ -78,6 +78,8 @@
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
+      $.ajax({url: "{{ url_for('login') }}", async: false, type: "POST", data: response,  success: function(result){
+        }});
     });
   }
 </script>
@@ -97,7 +99,7 @@
         </div>
         <div>
             <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
+            </fb:login-button>
 
         </div>
     </nav>
