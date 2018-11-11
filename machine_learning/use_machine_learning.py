@@ -39,7 +39,7 @@ def init_options():
     (opts, args) = parser.parse_args()
     return opts, args
 
-def get_category(category_id,opts):
+def get_category(category_id, opts):
     try:
         api = finding(debug=opts.debug, appid=opts.appid, domain=opts.domain,
                       config_file=opts.yaml, warnings=True)
@@ -81,10 +81,7 @@ def get_categories(cat_arr,opts):
 # example usage, should be deleted if this is used  as a library
 def use_machine_learning(token, budget):
     print("Finding samples for SDK version %s" % ebaysdk.get_version())
-    budget = int(input())
     (opts, args) = init_options()
-    print("Insert token:")
-    token = input()
     #run(opts)
     #categories = [[162922],[91101]]
     #yeet = get_categories(categories)
@@ -96,7 +93,7 @@ def use_machine_learning(token, budget):
         if len(item)>5:
             item = random.sample(item,5)
             print(item)
-        yeet = get_categories(item)
+        yeet = get_categories(item, opts)
         arr.append(yeet)
 
     viable_option = []
@@ -122,14 +119,15 @@ def use_machine_learning(token, budget):
             sum += float(arr[e][iterator[e]]['sellingStatus']['currentPrice']['value'])
         if sum <= budget:
             viable_option.append(tuple(iterator+[sum]))
-
+    output = []
     if len(viable_option)==0:
-        print("NULL")
-        quit()
+        return output
     picked_choice = random.choice(viable_option)
+
     for it in range(len(picked_choice)-1):
-        print(arr[it][picked_choice[it]]['title'] + ";" + picked_choice[it]['galleryURL'] + ";" + arr[it][picked_choice[it]]['sellingStatus']['currentPrice']['value'])
-    print("sum:" + str(picked_choice[len(picked_choice)-1]))
+        output.append(arr[it][picked_choice[it]]['title'],picked_choice[it]['galleryURL'],arr[it][picked_choice[it]]['sellingStatus']['currentPrice']['value'])
+    output.append(picked_choice[len(picked_choice)-1])
+    return output
 
 
     #EAAH3Vm6c8K4BAIhH5J2psYBl00I0xqEDWPtwMUNBbWhm8bQ9InZCZAc8ZB88ZAkL8OnO6A3BVGO8MXqkXrV9oK1iNzXg4ZA002bvinUWcbwdLJeN6CZC6ZAAnLyun4gc4uzaPoXHeMRwH8qi5R9tvhwgh4t2qZAc6sXaay47q0BZBynpiaFxtJcU7ZCr32iBLbMX2kstjuKf0QoAZDZD

@@ -4,8 +4,6 @@ from grey_elephant import RecipientForm, util
 from grey_elephant.models import User, Session, Recipient
 import uuid
 import facebook
-from machine_learning.use_machine_learning import use_machine_learning
-
 
 
 app = Flask(__name__)
@@ -58,8 +56,6 @@ def refer():
         session.add(new_user)
         session.add(new_recp)
         token = str(new_user.fb_access_token)
-        #Redirect to display page, call it there when budget is set
-        #data = use_machine_learning(token, budget=55)
         session.commit()
     return render_template("home.html")
 
