@@ -27,8 +27,12 @@
         {{ render_field(form.email) }}
     </div>
     <div class="form-group">
+        {{ render_field(form.instagram) }}
+    </div>
+    <div class="form-group">
         {{ render_field(form.budget) }}
     </div>
+
     <p><input class="btn" type=submit value=Submit>
 </form>
     {% if error %}

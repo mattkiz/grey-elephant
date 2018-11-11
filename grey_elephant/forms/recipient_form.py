@@ -18,5 +18,6 @@ class RecipientForm(Form):
     lastname = StringField("Recipient Last Name",
                            validators=[validators.InputRequired()])
     email = EmailField("Recipient Email", validators=[validators.Email("Not valid email!"), validators.InputRequired()])
+    instagram = StringField("Recipient Instagram Username")
     budget = DecimalField("How much would you like to spend on this gift?",
                           validators=[validators.InputRequired(), validators.NumberRange(min=0.0, max=500.0)])

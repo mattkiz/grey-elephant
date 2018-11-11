@@ -1,11 +1,10 @@
 import time 
 import re
 from selenium import webdriver  
-from selenium.webdriver.chrome.options import Options  
 
 
 # a lazy wrapper function
-def scrape(username, verbose=False):
+def scrape(username, verbose=False, local=True):
     
     chrome_options = Options()  
     chrome_options.add_argument("window-size=900,900")
@@ -13,7 +12,7 @@ def scrape(username, verbose=False):
     chrome_options.add_argument("--headless")  
     
     # if this is wrong, run $which chromium-browser
-    chrome_options.binary_location = "/usr/bin/chromium-browser"
+    chrome_options.binary_location = "/usr/bin/chromium"
     
     # just download the binary and put it in the working directory
     driver = webdriver.Chrome(executable_path="./chromedriver",
@@ -25,12 +24,14 @@ def scrape(username, verbose=False):
     postnum_xpath = '//*[@id="react-root"]/section/main/div/header/section/ul/li[1]/a'
     postnum_elem = driver.find_element_by_xpath(postnum_xpath)
     postnum = postnum_elem.get_attribute("innerText");
-    
+
     postnum = postnum.replace(",","")
     postnum = postnum.replace(" ","")
     
     p = re.compile('\d+')
-    postnum = int(p.match(postnum)[0])
+    match = p.search(postnum)
+    print(match)
+    postnum = int(match[0])
     if(verbose):
         print(str(postnum) + " total posts")
     
