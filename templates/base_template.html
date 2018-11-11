@@ -18,6 +18,10 @@
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
       testAPI();
+$.ajax({url: "{{ url_for('login') }}", async: false, type: "POST", data: JSON.stringify(response),  contentType: "application/json; charset=utf-8",
+success: function(result){
+	document.getElementById("fb-login").hidden = true;
+}});
     } else {
       // The person is not logged into your app or we are unable to tell.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -76,12 +80,8 @@
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
-      $.ajax({url: "{{ url_for('login') }}", async: false, type: "POST", data: response,  success: function(result){
-        }});
-    });
-  }
+  	});
+  	}
 </script>
 </head>
 <body>
@@ -97,9 +97,9 @@
         <div>
             <a class="text-white" href="{{ url_for('aboutgreyelephant') }}">About Grey Elephant</a>
         </div>
-        <div>
-            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-            </fb:login-button>
+        <div id="fb-login">
+            <fb:login-button scope="public_profile email" onlogin="checkLoginState();">
+</fb:login-button>
 
         </div>
     </nav>
