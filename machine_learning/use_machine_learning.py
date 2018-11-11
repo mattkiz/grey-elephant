@@ -8,10 +8,11 @@ Licensed under CDDL 1.0
 import os
 import sys
 import random
-from predict import generate_IDs
+from .predict import generate_IDs
 from optparse import OptionParser
+import sys
 
-sys.path.insert(0, '%s/../' % os.path.dirname(__file__))
+# sys.path.insert(0, '%s/../' % os.path.dirname(__file__))
 
 import ebaysdk
 from ebaysdk.finding import Connection as finding
@@ -78,7 +79,7 @@ def get_categories(cat_arr):
 
 
 # example usage, should be deleted if this is used  as a library
-if __name__ == "__main__":
+def use_machine_learning(token, budget):
     print("Finding samples for SDK version %s" % ebaysdk.get_version())
     budget = int(input())
     (opts, args) = init_options()

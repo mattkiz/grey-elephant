@@ -3,7 +3,7 @@ from flask import url_for
 
 def sendemail(send_email, access_code):
     subject = 'Merry Gift Giving!'
-    message = 'Click the link to receive a gift from your friend! Link: ' + url_for("refer") + \
+    message = 'Click the link to receive a gift from your friend! Link: https://central-diagram-222007.appspot.com/' + url_for("refer") + \
               "\n Access Code:" + access_code
     smtpserver = 'smtp.gmail.com:587'
     password = 'HackerFooBar123'

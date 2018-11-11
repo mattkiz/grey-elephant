@@ -7,14 +7,15 @@ from bs4 import BeautifulSoup
 import pickle
 import facebook
 import random
+import os
 
-
+path = os.path.join(os.path.dirname(os.path.dirname( __file__ )), "machine-learning-data\\")
 suggestions = 3
-categories = pickle.load(open("eBay_categories.pkl","rb"))
-model = pickle.load(open("model.pkl", "rb"))
-training = pickle.load(open("training.pkl", "rb"))
-nn = pickle.load(open("neuralnetwork.pkl","rb"))
-subcategoryIDs = pickle.load(open("subcategoryIDs.pkl","rb"))
+categories = pickle.load(open(os.path.join(path, "eBay_categories.pkl"),"rb"))
+model = pickle.load(open(path + "model.pkl", "rb"))
+training = pickle.load(open(path + "training.pkl", "rb"))
+nn = pickle.load(open(path + "neuralnetwork.pkl","rb"))
+subcategoryIDs = pickle.load(open(path + "subcategoryIDs.pkl","rb"))
 sub_categories = {}
 
 s = set(stopwords.words("english"))

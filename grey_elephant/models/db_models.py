@@ -29,5 +29,4 @@ class User(Base):
 class Recipient(Base):
     __tablename__ = "Recipient"
     uuid = Column(CHAR(36), primary_key=True)
-    Users_uuid = Column(CHAR(36), ForeignKey("Users.uuid"))
     users = relationship("User", secondary=association_table, back_populates="recipients")
