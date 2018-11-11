@@ -1,7 +1,7 @@
 import time 
 import re
 from selenium import webdriver  
-
+from selenium.webdriver.chrome.options import Options
 
 # a lazy wrapper function
 def scrape(username, verbose=False, local=True):
@@ -141,6 +141,6 @@ def scrape(username, verbose=False, local=True):
     return scroll_bottom()
     
 
-data = scrape("modenesegiorgia")
-        
+# data = scrape("modenesegiorgia")
+
 #-------------------------------------------------
