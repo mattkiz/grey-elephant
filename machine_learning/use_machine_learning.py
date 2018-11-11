@@ -81,10 +81,7 @@ def get_categories(cat_arr):
 # example usage, should be deleted if this is used  as a library
 def use_machine_learning(token, budget):
     print("Finding samples for SDK version %s" % ebaysdk.get_version())
-    budget = int(input())
     (opts, args) = init_options()
-    print("Insert token:")
-    token = input()
     #run(opts)
     #categories = [[162922],[91101]]
     #yeet = get_categories(categories)
@@ -127,9 +124,11 @@ def use_machine_learning(token, budget):
         print("NULL")
         quit()
     picked_choice = random.choice(viable_option)
+    output = []
     for it in range(len(picked_choice)-1):
-        print(arr[it][picked_choice[it]]['title'] + ";" + picked_choice[it]['galleryURL'] + ";" + arr[it][picked_choice[it]]['sellingStatus']['currentPrice']['value'])
-    print("sum:" + str(picked_choice[len(picked_choice)-1]))
+        output.append(arr[it][picked_choice[it]]['title'],picked_choice[it]['galleryURL'],arr[it][picked_choice[it]]['sellingStatus']['currentPrice']['value'])
+    output.append(picked_choice[len(picked_choice)-1])
+    return output
 
 
     #EAAH3Vm6c8K4BAIhH5J2psYBl00I0xqEDWPtwMUNBbWhm8bQ9InZCZAc8ZB88ZAkL8OnO6A3BVGO8MXqkXrV9oK1iNzXg4ZA002bvinUWcbwdLJeN6CZC6ZAAnLyun4gc4uzaPoXHeMRwH8qi5R9tvhwgh4t2qZAc6sXaay47q0BZBynpiaFxtJcU7ZCr32iBLbMX2kstjuKf0QoAZDZD
