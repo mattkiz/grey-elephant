@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        document.getElementById("login").innerHTML = "login";
+        </script>
     <style>
 html, body {
     margin: 0;
@@ -34,12 +37,11 @@ html, body {
     <div class="card container-fluid card-inverse">
         <div class="card-body">
             <div class="a">
-                <p><strong class="text-center"> Our machines use AI to do your gift shopping for you!</strong></p>
+                <p><strong class="text-center">We use machine learning to see
+                what your interests are, and then find products on the web
+                that fit those interests!</strong></p>
+
             </div>
-            <div style="text-align:center;">
-                <a href="{{url_for('login')}}"><button class="active btn-lg btn-success text-center"
-                               onsubmit="{{url_for('login')}}">Get
-                    Started</button></a>
             </div>
         </div>
     </div>
@@ -47,4 +49,3 @@ html, body {
 {% endblock %}
 </body>
 
-</html>

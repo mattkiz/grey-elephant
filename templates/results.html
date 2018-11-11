@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<style>
+    table {
+    width: 100%;
+    }
+    th {
+        height: 50px;
+    }
+    td {
+        height: 25px;
+    }
+</style>
     <meta charset="UTF-8">
     <title>Title</title>
     <meta charset="UTF-8">
 </head>
 <body>
 {% include "base_template.html" %}
-
+<p><strong>Here are your gifts!</strong></p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+    <th>Product</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Link to purchase</th>
+  </tr>
+<tr class="success"><td>Item1</td><td> description1 </td><td> Price1 </td><td>Link to product</td></tr>
+<tr class="active"><td>Item2</td><td> description2 </td><td> Price2 </td><td>Link to product</td></tr>
+<tr class="danger"><td>Item3</td><td> description3 </td><td> Price3 </td><td>Link to product</td></tr>
+</tbody>
+</table>
 </body>
 </html>
