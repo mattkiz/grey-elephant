@@ -73,15 +73,44 @@ def get_categories(cat_arr):
 # example usage, should be deleted if this is used  as a library
 if __name__ == "__main__":
     print("Finding samples for SDK version %s" % ebaysdk.get_version())
+    budget = int(input())
     (opts, args) = init_options()
     print("Insert token:")
     token = input()
     #run(opts)
+    categories = [162922]
+    yeet = get_categories(categories)
+    print(yeet[0])['sellingStatus']['currentPrice']['value']
+
     categories = generate_IDs(token)
+    arr = []
     for item in categories:
         print(item)
         yeet = get_categories(item)
-        print(yeet[0]['title'])
+        arr.append(yeet)
+
+    viable_option = []
+    iterator = [1] * len(arr);
+    while (True):
+        iterator[len(iterator)-1] += 1
+        carryOver = False
+        for i in range(len(iterator)-1, -1, -1):
+            if (carryOver):
+                iterator[i] += 1
+            if iterator[i] >= len(arr[i]):
+                iterator[i] = 0
+                carryOver = True
+                if i==0: break
+        sum = 0
+        for e in range(len(iterator)):
+            sum += arr[e][iterator[e]]['sellingStatus']['currentPrice']['value']
+        if sum <= budget:
+            viable_option.append(tuple(iterator)+tuple(sum))
+
+    picked_choice = random.choice(viable_option)
+    for it in range(len(picked_choice)-1):
+        print(arr[it][picked_choice[it]]['title'] + ": " + arr[it][picked_choice[it]]['sellingStatus']['currentPrice']['value'])
+    print("sum: " + str(picked_choice[len(picked_choice)-1]))
 
 
     #EAAH3Vm6c8K4BAIhH5J2psYBl00I0xqEDWPtwMUNBbWhm8bQ9InZCZAc8ZB88ZAkL8OnO6A3BVGO8MXqkXrV9oK1iNzXg4ZA002bvinUWcbwdLJeN6CZC6ZAAnLyun4gc4uzaPoXHeMRwH8qi5R9tvhwgh4t2qZAc6sXaay47q0BZBynpiaFxtJcU7ZCr32iBLbMX2kstjuKf0QoAZDZD

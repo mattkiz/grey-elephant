@@ -17,24 +17,29 @@ for sub_category in categories.keys():
     count+=1
     if (count % 100 == 0): pickle.dump(document, open("document.pkl", "wb"))
     print("Handling subcategory " + str(count))
-    response = search(sub_category, tld="com", num=3, start=0, stop=1, pause=0)
-    ind = 3
-    try:
-        result = next(response)
-        uContent = urllib.request.urlopen(result)
-        html = uContent.read()
-        soup = BeautifulSoup(html, "html.parser")
-        paragraphs = soup.findAll("p")
-        for paragraph in paragraphs:
-            sentence = word_tokenize(paragraph.text)
-            filtered_sentence = [w.lower() for w in sentence if w not in s]
-            document.append(filtered_sentence)
-            training_set[sub_category].append(filtered_sentence)
-        uContent.close()
-        ind-=1
-        if (ind == 0): continue
-    except:
-        pass
+    response = search(sub_category, tld="com", num=5, start=0, stop=1, pause=0)
+    ind = 0
+    tries = 6
+    while (True):
+        try:
+            tries-=1
+            if (tries==0): break
+            result = next(response)
+            uContent = urllib.request.urlopen(result)
+            html = uContent.read()
+            soup = BeautifulSoup(html, "html.parser")
+            paragraphs = soup.findAll("p")
+            for paragraph in paragraphs:
+                sentence = word_tokenize(paragraph.text)
+                filtered_sentence = [w.lower() for w in sentence if w not in s]
+                document.append(filtered_sentence)
+                training_set[sub_category].append(filtered_sentence)
+            uContent.close()
+            ind+=1
+            print(result)
+            if (ind == 3): break
+        except:
+            pass
 
 
 pickle.dump(document, open("document.pkl","wb"))
