@@ -1,2 +1,5 @@
 runtime: python37
 entrypoint: sh deploy.sh
+handlers:
+- url: /.*
+  script: main.app
