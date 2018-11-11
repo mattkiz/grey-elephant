@@ -10,12 +10,15 @@ import random
 import os
 
 path = os.path.join(os.path.dirname(os.path.dirname( __file__ )), "machine-learning-data\\")
+subcategoryIDs = pickle.load(open(path + "subcategoryIDs.pkl","rb"))
+'''
+
 suggestions = 3
 categories = pickle.load(open(os.path.join(path, "eBay_categories.pkl"),"rb"))
 model = pickle.load(open(path + "model.pkl", "rb"))
 training = pickle.load(open(path + "training.pkl", "rb"))
 nn = pickle.load(open(path + "neuralnetwork.pkl","rb"))
-subcategoryIDs = pickle.load(open(path + "subcategoryIDs.pkl","rb"))
+
 sub_categories = {}
 
 s = set(stopwords.words("english"))
@@ -25,8 +28,16 @@ keys_array = []
 for key in training.keys():
     sub_categories[key] = 0
     keys_array.append(key)
-
+'''
 def generate_IDs(token):
+
+    output = []
+    for i in range(3):
+        randomkey = random.choice(subcategoryIDs.keys())
+        output.append(subcategoryIDs[randomkey])
+
+    return output
+    '''
     graph = facebook.GraphAPI(access_token=token, version=3.1)
     stop_words = set(stopwords.words('english'))
     likes = graph.get_connections(id='me', connection_name='likes') #send invitation to friend
@@ -85,5 +96,6 @@ def generate_IDs(token):
                 output.append(subcategoryIDs[x])
                 break
     return output
+    '''
 
 

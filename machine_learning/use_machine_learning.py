@@ -39,7 +39,7 @@ def init_options():
     (opts, args) = parser.parse_args()
     return opts, args
 
-def get_category(category_id):
+def get_category(category_id, opts):
     try:
         api = finding(debug=opts.debug, appid=opts.appid, domain=opts.domain,
                       config_file=opts.yaml, warnings=True)
@@ -69,10 +69,10 @@ def merge_dicts(x, y):
     z = z.update(y)    # modifies z with y's keys and values & returns None
     return z
 
-def get_categories(cat_arr):
+def get_categories(cat_arr,opts):
     z = []
     for i in range(0,len(cat_arr)):
-        c = get_category(cat_arr[i])
+        c = get_category(cat_arr[i],opts)
         if (c is not None):
             z = z + c
     return z
@@ -93,7 +93,7 @@ def use_machine_learning(token, budget):
         if len(item)>5:
             item = random.sample(item,5)
             print(item)
-        yeet = get_categories(item)
+        yeet = get_categories(item, opts)
         arr.append(yeet)
 
     viable_option = []
