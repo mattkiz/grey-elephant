@@ -7,7 +7,7 @@ html, body {
     height: 100%;
 }
         div.image1 {
-            background-image: url("static/greyelephant2.jpg");
+            background-image: url("/static/greyelephant2.jpg");
             background-color: rgba(212, 212, 212, .2);
         }
 
@@ -37,8 +37,8 @@ html, body {
                 <p><strong class="text-center"> Our machines use AI to do your gift shopping for you!</strong></p>
             </div>
             <div style="text-align:center;">
-                <a href="{{url_for('login')}}"><button class="active btn-lg btn-success text-center"
-                               onsubmit="{{url_for('login')}}">Get
+                <a href="{{url_for('recipient_info')}}"><button class="active btn-lg btn-success text-center"
+                               onsubmit="{{url_for('recipient_info')}}">Get
                     Started</button></a>
             </div>
         </div>

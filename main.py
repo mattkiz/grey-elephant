@@ -25,27 +25,6 @@ def recipient_info():
 def recipient_info_post():
     form = RecipientForm(request.form)
 
-    import smtplib
-
-    def sendemail(from_addr = 'greyelephantstaff@gmail.com', to_addr_list = [form.email.data],
-                  subject = 'Merry Gift Giving!', message = 'Click the link to receive a gift from your friend! Link: http://127.0.0.1:5000/login',
-                  login = 'greyelephantstaff@gmail.com', password = 'HackerFooBar123',
-                  smtpserver='smtp.gmail.com:587'):
-        print "function got called"
-
-        header = 'From: %s\n' % from_addr
-        header += 'To: %s\n' % ','.join(to_addr_list)
-        header += 'Subject: %s\n\n' % subject
-        message = header + message
-
-        server = smtplib.SMTP(smtpserver)
-        server.starttls()
-        server.login(login, password)
-        problems = server.sendmail(from_addr, to_addr_list, message)
-        server.quit()
-
-        return problems
-
     if form.validate():
         # data = scrape(form.instagram.data)
         sendemail()

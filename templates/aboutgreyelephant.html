@@ -3,14 +3,15 @@
 <head>
     <script>
         document.getElementById("login").innerHTML = "login";
-        </script>
+    </script>
     <style>
-html, body {
-    margin: 0;
-    height: 100%;
-}
+        html, body {
+            margin: 0;
+            height: 100%;
+        }
+
         div.image1 {
-            background-image: url("static/greyelephant2.jpg");
+            background-image: url("/static/greyelephant2.jpg");
             background-color: rgba(212, 212, 212, .2);
         }
 
@@ -19,6 +20,7 @@ html, body {
             font-weight: bold;
             font-size: 125%
         }
+
         div.card {
             margin: 0 auto;
             width: 33%;
@@ -33,19 +35,21 @@ html, body {
 {% include "base_template.html" %}
 {% extends "bootstrap/base.html" %}
 {% block content %}
-<div class="image1" style="height: 100%">
-    <div class="card container-fluid card-inverse">
-        <div class="card-body">
-            <div class="a">
-                <p><strong class="text-center">We use machine learning to see
-                what your interests are, and then find products on the web
-                that fit those interests!</strong></p>
-
-            </div>
+    <div class="image1" style="height: 100%">
+        <div class="card container-fluid card-inverse">
+            <div class="card-body">
+                <div class="a">
+                    <p><strong class="text-center">We use machine learning to see
+                        what your interests are, and then find products on the web
+                        that fit those interests!</strong>
+                    </p>
+                </div>
+                <a href="https://app.termly.io/document/privacy-policy/b46e7b2d-5f5c-4574-a7b8-74b485226792">Privacy
+                    Policy</a>
             </div>
         </div>
     </div>
-</div>
+    </div>
 {% endblock %}
 </body>
 
