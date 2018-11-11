@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Grey Elephant</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+<body>
+{% extends "bootstrap/base.html" %}
+{% block navbar %}
+<nav class="navbar navbar-dark bg-dark container-fluid">
+    <div>
+        <a class="navbar-brand text-white" href="{{url_for('home')}}">Grey Elephant</a>
+    </div>
+    <div>
+        <a class="text-white" href="{{url_for('recipient_info')}}">Get Started</a>
+    </div>
+    <div>
+        <a class="text-white" href="#">About Grey Elephant</a>
+    </div>
+</nav>
+{% endblock %}
+</body>
+</html>

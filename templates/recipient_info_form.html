@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+{% include "base_template.html" %}
+{% block content %}
+
+{% from "_formhelpers.html" import render_field %}
+<div class="container" style="alignment: center">
+    {% block title %}
+    <p class="h3">Enter your friends information below</p>
+    <p class="h5">We'll send them a link to confirm their identity</p>
+    {% endblock %}
+    <form method=post>
+    <div class="form-group">
+        {{ render_field(form.firstname) }}
+    </div>
+    <div class="form-group">
+        {{ render_field(form.lastname) }}
+    </div>
+    <div class="form-group">
+        {{ render_field(form.email) }}
+    </div>
+    <div class="form-group">
+        {{ render_field(form.instagram) }}
+    </div>
+    <div class="form-group">
+        {{ render_field(form.budget) }}
+    </div>
+
+    <p><input class="btn" type=submit value=Submit>
+</form>
+    {% if error %}
+        <p class="h5" style="color: red">There was an error with your submission. Please try again</p>
+    {% endif %}
+</div>
+
+{% endblock %}
+</body>
+</html>

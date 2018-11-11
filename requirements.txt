@@ -1,0 +1,7 @@
+flask
+ebaysdk
+facebook-sdk
+sqlalchemy
+flask_bootstrap
+wtforms
+selenium
