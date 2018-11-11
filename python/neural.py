@@ -28,4 +28,5 @@ for key in training.keys():
 
 clf.fit(X,Y)
 pickle.dump(clf, open("neuralnetwork.pkl","wb"))
+print("Operation successful")
 
