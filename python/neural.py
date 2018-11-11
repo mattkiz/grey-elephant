@@ -21,7 +21,6 @@ for key in training.keys():
                 vec = model.wv[word]
                 X.append(vec)
                 Y.append(index)
-                print("learn")
             except:
                 pass
     index += 1
