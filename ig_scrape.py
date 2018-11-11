@@ -15,7 +15,7 @@ def scrape(username, verbose=False, local=True):
     chrome_options.binary_location = "/usr/bin/chromium"
     
     # just download the binary and put it in the working directory
-    driver = webdriver.Chrome(executable_path="./chromedriver",
+    driver = webdriver.Chrome(executable_path="./chrome-browser/chromedriver",
                               options=chrome_options)
     
     driver.get("https://www.instagram.com/"+username)

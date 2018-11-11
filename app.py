@@ -2,11 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from grey_elephant import RecipientForm
 from ig_scrape import scrape
-import subprocess
-import os
-
-if not os.environ.get("Debug"):
-    subprocess.run("deploy.sh")
 
 app = Flask(__name__)
 app.template_folder = "./templates"
@@ -25,7 +20,7 @@ def recipient_info():
 def recipient_info_post():
     form = RecipientForm(request.form)
     if form.validate():
-        scrape(form.instagram.data)
+        data = scrape(form.instagram.data)
     else:
         return render_template("recipient_info_form.html", form=form, error=True)
     return str(form.data)
@@ -34,4 +29,6 @@ def recipient_info_post():
 def results():
     return render_template("results.html")
 
-app.run()
+
+if __name__ == "__main__":
+    app.run()
