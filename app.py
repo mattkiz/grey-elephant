@@ -2,6 +2,11 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from grey_elephant import RecipientForm
 from ig_scrape import scrape
+import subprocess
+import os
+
+if not os.environ.get("Debug"):
+    subprocess.run("deploy.sh")
 
 app = Flask(__name__)
 app.template_folder = "./templates"
