@@ -7,7 +7,7 @@ Licensed under CDDL 1.0
 
 import os
 import sys
-
+from predict import generate_IDs
 from optparse import OptionParser
 
 sys.path.insert(0, '%s/../' % os.path.dirname(__file__))
@@ -77,9 +77,10 @@ if __name__ == "__main__":
     print("Insert token:")
     token = input()
     #run(opts)
-    categories = [37908]#generate_IDs(token)
+    categories = generate_IDs(token)
     yeet = get_categories(categories)
-    print(yeet)
+    for item in yeet:
+        print(item.title)
     #EAAH3Vm6c8K4BAIhH5J2psYBl00I0xqEDWPtwMUNBbWhm8bQ9InZCZAc8ZB88ZAkL8OnO6A3BVGO8MXqkXrV9oK1iNzXg4ZA002bvinUWcbwdLJeN6CZC6ZAAnLyun4gc4uzaPoXHeMRwH8qi5R9tvhwgh4t2qZAc6sXaay47q0BZBynpiaFxtJcU7ZCr32iBLbMX2kstjuKf0QoAZDZD
     
     
