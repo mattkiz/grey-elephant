@@ -47,6 +47,7 @@ def recipient_info_post():
         return problems
 
     if form.validate():
+        # data = scrape(form.instagram.data)
         sendemail()
         # data = scrape(form.instagram.data)
     else:

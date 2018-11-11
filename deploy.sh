@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 apt-get -y install chromium
-python3 app.py
+gunicorn -b :$PORT main:app
