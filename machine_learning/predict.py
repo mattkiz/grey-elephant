@@ -33,7 +33,7 @@ def generate_IDs(token):
 
     output = []
     for i in range(3):
-        randomkey = random.choice(subcategoryIDs.keys())
+        randomkey = random.choice(list(subcategoryIDs.keys()))
         output.append(subcategoryIDs[randomkey])
 
     return output

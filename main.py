@@ -4,6 +4,7 @@ from grey_elephant import RecipientForm, util
 from grey_elephant.models import User, Session, Recipient
 import uuid
 import facebook
+import machine_learning.use_machine_learning as ml
 
 
 app = Flask(__name__)
@@ -57,7 +58,8 @@ def refer():
         session.add(new_recp)
         token = str(new_user.fb_access_token)
         session.commit()
-    return render_template("home.html")
+
+    return render_template("home.html", items=items)
 
 @app.route("/recipientinfo/", methods=["GET"])
 def recipient_info():
@@ -76,7 +78,15 @@ def recipient_info_post():
 
 @app.route("/results")
 def results():
-    return render_template("results.html")
+    items_raw = ml.use_machine_learning(None, 200.0)
+    items = []
+    for i in range(len(items_raw)- 1):
+        i_dict = {}
+        i_dict["name"] = items_raw[i][0]
+        i_dict["value"] = items_raw[i][2]
+        i_dict["link"] = items_raw[i][1]
+        items.append(i_dict)
+    return render_template("results.html", items=items)
 
 @app.route("/aboutgreyelephant/")
 def aboutgreyelephant():

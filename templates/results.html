@@ -23,13 +23,12 @@
 <tbody>
 <tr>
     <th>Product</th>
-    <th>Description</th>
     <th>Price</th>
     <th>Link to purchase</th>
   </tr>
-<tr class="success"><td>Item1</td><td> description1 </td><td> Price1 </td><td>Link to product</td></tr>
-<tr class="active"><td>Item2</td><td> description2 </td><td> Price2 </td><td>Link to product</td></tr>
-<tr class="danger"><td>Item3</td><td> description3 </td><td> Price3 </td><td>Link to product</td></tr>
+{% for item in items %}
+<tr class="success"><td>{{ item.name  }}</td><td> {{ item.value  }}</td><td> <img src="{{ item.link }}"></td></tr>
+{% endfor %}
 </tbody>
 </table>
 </body>

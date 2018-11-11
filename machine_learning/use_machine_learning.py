@@ -89,15 +89,13 @@ def use_machine_learning(token, budget):
     categories = generate_IDs(token)
     arr = []
     for item in categories:
-        print(item)
-        if len(item)>5:
-            item = random.sample(item,5)
-            print(item)
+        if len(item)>2:
+            item = random.sample(item,2)
         yeet = get_categories(item, opts)
         arr.append(yeet)
 
     viable_option = []
-    iterator = [1] * len(arr);
+    iterator = [1] * len(arr)
     while (True):
         iterator[len(iterator)-1] += 1
         carryOver = False
@@ -115,7 +113,6 @@ def use_machine_learning(token, budget):
             break
         sum = 0
         for e in range(len(iterator)):
-            print(arr[e][iterator[e]])
             sum += float(arr[e][iterator[e]]['sellingStatus']['currentPrice']['value'])
         if sum <= budget:
             viable_option.append(tuple(iterator+[sum]))
@@ -123,9 +120,10 @@ def use_machine_learning(token, budget):
     if len(viable_option)==0:
         return output
     picked_choice = random.choice(viable_option)
-
+    print(picked_choice)
     for it in range(len(picked_choice)-1):
-        output.append(arr[it][picked_choice[it]]['title'],picked_choice[it]['galleryURL'],arr[it][picked_choice[it]]['sellingStatus']['currentPrice']['value'])
+        output.append((arr[it][picked_choice[it]]['title'],arr[it][picked_choice[it]]['galleryURL'],
+                      arr[it][picked_choice[it]]['sellingStatus']['currentPrice']['value']))
     output.append(picked_choice[len(picked_choice)-1])
     return output
 

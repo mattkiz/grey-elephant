@@ -86,8 +86,11 @@ success: function(result){
   	});
   	}
   	function test() {
-        console.log($('#referal_code').val());
-    }
+            response = {};
+              response.refCode = $("#referal_code").val();
+$.ajax({url: "{{ url_for('refer') }}", async: false, type: "POST", data: JSON.stringify(response),  contentType:
+        "application/json; charset=utf-8",
+    })}
 </script>
 </head>
 <body>
