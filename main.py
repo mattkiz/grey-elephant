@@ -1,7 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, make_response
 from flask_bootstrap import Bootstrap
-from grey_elephant import RecipientForm
-from ig_scrape import scrape
+from grey_elephant import RecipientForm, util
+from grey_elephant.models import User, Session, Recipient
+import json
+import uuid
+import facebook
+
+
 
 app = Flask(__name__)
 app.template_folder = "./templates"
@@ -11,9 +16,47 @@ Bootstrap(app)
 def home():
     return render_template("home.html")
 
-@app.route("/login")
+@app.route("/login", methods=["POST"])
 def login():
+    session = Session()
+    response_body = request.json.get("authResponse")
+    if session.query(User.fb_id).filter(User.fb_id==int(response_body.get("userID"))).count() == 0:
+        graph = facebook.GraphAPI(response_body.get("accessToken"), version="2.12")
+        user_fb = graph.get_object(int(response_body.get("userID")))
+        firstname = user_fb.get("name").split(" ")[0]
+        lastname = user_fb.get("name").split(" ")[1]
+        new_user = User(uuid=str(uuid.uuid4()), firstname=firstname, lastname=lastname,
+                        fb_access_token=response_body.get("accessToken"),
+                        fb_id=int(user_fb.get("id")))
+        session.add(new_user)
+        session.commit()
+        r = make_response(render_template("home.html"))
+        r.set_cookie("uuid", new_user.uuid)
+        return r
 
+@app.route("/refer", methods=["GET"])
+def refer_get():
+    return render_template("refer.html")
+
+@app.route("/refer", methods=["POST"])
+def refer():
+    session = Session()
+    response_body = request.json.get("authResponse")
+    if session.query(User.fb_id).filter(User.fb_id==int(response_body.get("userID"))).count() == 0:
+        ref_code = request.json.get("refCode")
+        ref_user = session.query(User).get(ref_code)
+        graph = facebook.GraphAPI(response_body.get("accessToken"), version="2.12")
+        user_fb = graph.get_object(int(response_body.get("userID")))
+        firstname = user_fb.get("name").split(" ")[0]
+        lastname = user_fb.get("name").split(" ")[1]
+        new_user = User(uuid=str(uuid.uuid4()), firstname=firstname, lastname=lastname,
+                        fb_access_token=response_body.get("accessToken"),
+                        fb_id=int(user_fb.get("id")))
+        new_recp = Recipient(uuid=str(uuid.uuid4()))
+        new_recp.users.append(ref_user)
+        session.add(new_user)
+        session.add(new_recp)
+        session.commit()
     return render_template("home.html")
 
 @app.route("/recipientinfo/", methods=["GET"])
@@ -24,11 +67,9 @@ def recipient_info():
 @app.route("/recipientinfo/", methods=["POST"])
 def recipient_info_post():
     form = RecipientForm(request.form)
-
     if form.validate():
-        # data = scrape(form.instagram.data)
-        sendemail()
-        # data = scrape(form.instagram.data)
+        uuid_cookie = request.cookies.get("uuid")
+        util.sendemail(form.email.data, uuid_cookie)
     else:
         return render_template("recipient_info_form.html", form=form, error=True)
     return str(form.data)
