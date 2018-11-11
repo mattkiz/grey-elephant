@@ -7,6 +7,7 @@ Licensed under CDDL 1.0
 
 import os
 import sys
+import random
 from predict import generate_IDs
 from optparse import OptionParser
 
@@ -49,8 +50,7 @@ def get_category(category_id):
         }
 
         response = api.execute('findItemsAdvanced', api_request)
-        rep = response.dict()["searchResult"]["item"]            
-        print(str(category_id))
+        rep = response.dict()["searchResult"]["item"]
         return rep
 
     except ConnectionError as e:
@@ -78,9 +78,12 @@ if __name__ == "__main__":
     token = input()
     #run(opts)
     categories = generate_IDs(token)
-    yeet = get_categories(categories)
-    for item in yeet:
-        print(item.title)
+    for item in categories:
+        print(item)
+        yeet = get_categories(item)
+        print(yeet[0]['title'])
+
+
     #EAAH3Vm6c8K4BAIhH5J2psYBl00I0xqEDWPtwMUNBbWhm8bQ9InZCZAc8ZB88ZAkL8OnO6A3BVGO8MXqkXrV9oK1iNzXg4ZA002bvinUWcbwdLJeN6CZC6ZAAnLyun4gc4uzaPoXHeMRwH8qi5R9tvhwgh4t2qZAc6sXaay47q0BZBynpiaFxtJcU7ZCr32iBLbMX2kstjuKf0QoAZDZD
     
     

@@ -77,7 +77,7 @@ def generate_IDs(token):
             current_score += sub_categories[x]
             if current_score >= threshold:
                 output.append(subcategoryIDs[x])
-                continue
+                break
     return output
 
 
