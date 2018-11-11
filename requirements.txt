@@ -10,3 +10,4 @@ gensim
 nltk
 google
 sklearn
+mysql-connector

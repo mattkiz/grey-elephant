@@ -1,9 +1,10 @@
 import smtplib
+from flask import url_for
 
-
-def sendemail(send_email):
+def sendemail(send_email, access_code):
     subject = 'Merry Gift Giving!'
-    message = 'Click the link to receive a gift from your friend! Link: http://127.0.0.1:5000/login'
+    message = 'Click the link to receive a gift from your friend! Link: ' + url_for("refer") + \
+              "\n Access Code:" + access_code
     smtpserver = 'smtp.gmail.com:587'
     password = 'HackerFooBar123'
     login = 'greyelephantstaff@gmail.com'
