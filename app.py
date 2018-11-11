@@ -20,7 +20,8 @@ def recipient_info():
 def recipient_info_post():
     form = RecipientForm(request.form)
     if form.validate():
-        data = scrape(form.instagram.data)
+        pass
+        # data = scrape(form.instagram.data)
     else:
         return render_template("recipient_info_form.html", form=form, error=True)
     return str(form.data)

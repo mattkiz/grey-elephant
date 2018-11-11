@@ -5,3 +5,8 @@ sqlalchemy
 flask_bootstrap
 wtforms
 selenium
+bs4
+gensim
+nltk
+google
+sklearn
