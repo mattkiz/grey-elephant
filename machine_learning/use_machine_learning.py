@@ -119,12 +119,11 @@ def use_machine_learning(token, budget):
             sum += float(arr[e][iterator[e]]['sellingStatus']['currentPrice']['value'])
         if sum <= budget:
             viable_option.append(tuple(iterator+[sum]))
-
-    if len(viable_option)==0:
-        print("NULL")
-        quit()
-    picked_choice = random.choice(viable_option)
     output = []
+    if len(viable_option)==0:
+        return output
+    picked_choice = random.choice(viable_option)
+
     for it in range(len(picked_choice)-1):
         output.append(arr[it][picked_choice[it]]['title'],picked_choice[it]['galleryURL'],arr[it][picked_choice[it]]['sellingStatus']['currentPrice']['value'])
     output.append(picked_choice[len(picked_choice)-1])
