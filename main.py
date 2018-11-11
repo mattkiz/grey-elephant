@@ -58,8 +58,8 @@ def refer():
         session.add(new_user)
         session.add(new_recp)
         token = str(new_user.fb_access_token)
-        data = use_machine_learning(token, budget=55)
-        print(data)
+        #Redirect to display page, call it there when budget is set
+        #data = use_machine_learning(token, budget=55)
         session.commit()
     return render_template("home.html")
 
