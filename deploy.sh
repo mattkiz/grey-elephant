@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-sudo apt-get install -y chromium
+sudo apt-get -y install chromium
 python3 app.py
