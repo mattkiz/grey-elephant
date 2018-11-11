@@ -1,10 +1,10 @@
 
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : '{295616544388040}',
+      appId      : '295616544388040',
       cookie     : true,
       xfbml      : true,
-      version    : '{3.2}'
+      version    : '3.2'
     });
 
     FB.AppEvents.logPageView();
@@ -21,17 +21,14 @@
 
     FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
-    });
-
-{
-    status: 'connected',
-    authResponse: {
+        status: 'connected',
+        authResponse: {
         accessToken: '...',
         expiresIn:'...',
         signedRequest:'...',
         userID:'...'
-    }
-}
+    });
+
 
 <fb:login-button
   scope="public_profile,email"
