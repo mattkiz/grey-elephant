@@ -9,7 +9,7 @@ def scrape(username, verbose=False, local=True):
     chrome_options = Options()  
     chrome_options.add_argument("window-size=900,900")
     
-    chrome_options.add_argument("--headless")  
+    chrome_options.add_argument("--headless")
     
     # if this is wrong, run $which chromium-browser
     chrome_options.binary_location = "/usr/bin/chromium"
