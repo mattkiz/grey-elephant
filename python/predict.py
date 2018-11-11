@@ -8,6 +8,7 @@ import pickle
 import facebook
 import random
 
+
 suggestions = 3
 categories = pickle.load(open("eBay_categories.pkl","rb"))
 model = pickle.load(open("model.pkl", "rb"))
@@ -65,7 +66,11 @@ def generate_IDs(token):
             continue
         else:
             for x in individual_sub_categories.keys(): sub_categories[x] += individual_sub_categories[x] / total_score
-            print(sub_categories)
+            teaser = [x for x in individual_sub_categories.keys() if individual_sub_categories[x] != 0]
+            teaser = random.choice(teaser)
+            teaser = random.choice(subcategoryIDs[teaser])
+            print(random.choice(get_category(teaser))['title'])
+            #print(sub_categories)
     abs_total_score = 0;
     for x in sub_categories.keys(): abs_total_score += sub_categories[x]
     if abs_total_score == 0 : return None

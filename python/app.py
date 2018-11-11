@@ -50,7 +50,12 @@ def get_category(category_id):
         }
 
         response = api.execute('findItemsAdvanced', api_request)
-        rep = response.dict()["searchResult"]["item"]
+        rep = None
+        try:
+            rep = response.dict()["searchResult"]["item"]
+        except:
+            pass
+
         return rep
 
     except ConnectionError as e:
@@ -66,7 +71,9 @@ def merge_dicts(x, y):
 def get_categories(cat_arr):
     z = []
     for i in range(0,len(cat_arr)):
-        z = z + get_category(cat_arr[i])
+        c = get_category(cat_arr[i])
+        if (c is not None):
+            z = z + c
     return z
 
 
@@ -78,14 +85,16 @@ if __name__ == "__main__":
     print("Insert token:")
     token = input()
     #run(opts)
-    categories = [162922]
-    yeet = get_categories(categories)
-    print(yeet[0])['sellingStatus']['currentPrice']['value']
+    #categories = [[162922],[91101]]
+    #yeet = get_categories(categories)
 
     categories = generate_IDs(token)
     arr = []
     for item in categories:
         print(item)
+        if len(item)>5:
+            item = random.sample(item,5)
+            print(item)
         yeet = get_categories(item)
         arr.append(yeet)
 
@@ -94,23 +103,32 @@ if __name__ == "__main__":
     while (True):
         iterator[len(iterator)-1] += 1
         carryOver = False
+        b = False
         for i in range(len(iterator)-1, -1, -1):
             if (carryOver):
                 iterator[i] += 1
             if iterator[i] >= len(arr[i]):
                 iterator[i] = 0
                 carryOver = True
-                if i==0: break
+                if i==0:
+                    b = True
+                    break
+        if (b):
+            break
         sum = 0
         for e in range(len(iterator)):
-            sum += arr[e][iterator[e]]['sellingStatus']['currentPrice']['value']
+            print(arr[e][iterator[e]])
+            sum += float(arr[e][iterator[e]]['sellingStatus']['currentPrice']['value'])
         if sum <= budget:
-            viable_option.append(tuple(iterator)+tuple(sum))
+            viable_option.append(tuple(iterator+[sum]))
 
+    if len(viable_option)==0:
+        print("NULL")
+        quit()
     picked_choice = random.choice(viable_option)
     for it in range(len(picked_choice)-1):
-        print(arr[it][picked_choice[it]]['title'] + ": " + arr[it][picked_choice[it]]['sellingStatus']['currentPrice']['value'])
-    print("sum: " + str(picked_choice[len(picked_choice)-1]))
+        print(arr[it][picked_choice[it]]['title'] + ";" + picked_choice[it]['galleryURL'] + ";" + arr[it][picked_choice[it]]['sellingStatus']['currentPrice']['value'])
+    print("sum:" + str(picked_choice[len(picked_choice)-1]))
 
 
     #EAAH3Vm6c8K4BAIhH5J2psYBl00I0xqEDWPtwMUNBbWhm8bQ9InZCZAc8ZB88ZAkL8OnO6A3BVGO8MXqkXrV9oK1iNzXg4ZA002bvinUWcbwdLJeN6CZC6ZAAnLyun4gc4uzaPoXHeMRwH8qi5R9tvhwgh4t2qZAc6sXaay47q0BZBynpiaFxtJcU7ZCr32iBLbMX2kstjuKf0QoAZDZD

@@ -26,6 +26,7 @@ for key in training.keys():
     index += 1
 
 clf.fit(X,Y)
+
 pickle.dump(clf, open("neuralnetwork.pkl","wb"))
 print("Operation successful")
 
